@@ -26,4 +26,22 @@ class FoodModel extends AbstractModel
 
         return $foods;
     }
+
+    /**
+     * Sélectionne un plat à partir de son id
+     */
+    function getFoodId(int $foodId)
+    {
+        $sql = 'SELECT * 
+            FROM food
+            WHERE foodId = ?';
+
+        $result = $this->db->getOneResult($sql, [$foodId]);
+
+        if (empty($result)) {
+            return null;
+        }
+
+        return new Food($result);
+    }
 }

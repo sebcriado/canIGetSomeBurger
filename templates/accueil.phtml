@@ -1,0 +1,32 @@
+<header>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-logo">
+                <a href="<?= constructUrl('/'); ?>">
+                    <img src="<?= asset('images/nav-logo.png') ?>" alt="">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="">Profil</a>
+                <a href="<?= constructUrl('/panier'); ?>">Panier</a>
+                <a href="<?= constructUrl('/connexion'); ?>">Connexion/Inscription</a>
+                <a href="">Se déconnecter</a>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<img src="<?= asset('images/big-logo.png') ?>" alt="">
+
+<?php foreach ($foods as $food) : ?>
+    <div class="card" style="width: 150px;">
+        <img class="img-food" src="<?= asset('images/' . $food->getImage()) ?>" alt="">
+        <h1 class="title-food"><?= $food->getTitle(); ?></h1>
+        <p class="content-food"><?= $food->getDescription() ?></p>
+        <div class="add-price">
+            <h1 class="price-food"><?= $food->getPrice() ?> €</h1>
+            <button class="button">Ajouter au panier</button>
+        </div>
+    </div>
+<?php endforeach; ?>

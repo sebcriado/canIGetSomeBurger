@@ -7,3 +7,34 @@ require '../vendor/autoload.php';
 
 // Inclusion de la config
 require '../app/config.php';
+
+// Inclusion des dépendances
+require '../lib/functions.php';
+
+
+// Récupération du path
+$path = str_replace(BASE_URL, '', $_SERVER['REQUEST_URI']);
+$path = str_replace('/index.php', '', $path);
+$path = explode('?', $path)[0];
+
+
+if ($path == '') {
+    $path = '/';
+}
+
+// Routing
+switch ($path) {
+    case '/':
+        require '../controllers/home.php';
+        break;
+    case '/panier':
+        require '../controllers/panier.php';
+        break;
+    case '/connexion':
+        require '../controllers/connexion.php';
+        break;
+    default:
+        http_response_code(404);
+        echo 'Article introuvable';
+        exit;
+}
