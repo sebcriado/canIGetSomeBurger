@@ -21,8 +21,10 @@
 <img src="<?= asset('images/logo-form.png') ?>" alt="">
 
 <form action="">
-    <input type="text" name="mail" placeholder="Email">
+    <input type="text" name="firstname" placeholder="Nom">
+    <input type="text" name="lastname" placeholder="Prénom">
+    <input type="mail" name="mail" placeholder="Email">
+    <input type="tel" name="phone" placeholder="Téléphone">
     <input type="password" name="password" placeholder="Mot de passe">
-    <button type="submit">Se connecter</button>
+    <button type="submit">S'inscrire</button>
 </form>
-<p>Vous n'êtes pas inscrit ? <a href="<?= constructUrl('/inscription'); ?>">cliquez ici</a></p>

@@ -33,6 +33,9 @@ switch ($path) {
     case '/connexion':
         require '../controllers/connexion.php';
         break;
+    case '/inscription':
+        require '../controllers/inscription.php';
+        break;
     default:
         http_response_code(404);
         echo 'Article introuvable';

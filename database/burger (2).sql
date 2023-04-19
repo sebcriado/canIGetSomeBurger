@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mer. 19 avr. 2023 à 14:03
+-- Généré le : mer. 19 avr. 2023 à 14:41
 -- Version du serveur : 5.7.39
 -- Version de PHP : 8.2.0
 
@@ -69,7 +69,8 @@ CREATE TABLE `order` (
 
 CREATE TABLE `user` (
   `userId` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
+  `firstname` varchar(30) NOT NULL,
+  `lastname` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `phone` int(11) NOT NULL,
