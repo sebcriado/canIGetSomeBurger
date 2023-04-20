@@ -5,12 +5,12 @@ namespace App\Entity;
 
 class User
 {
-    private int $idUser;
+    private int $userId;
     private string $firstname;
     private string $lastname;
     private string $email;
     private string $password;
-    private int $phone;
+    private string $phone;
     private string $adress;
     private string $role;
 
@@ -27,17 +27,17 @@ class User
     /**
      * Get the value of idUser
      */
-    public function getIdUser(): int
+    public function getUserId(): int
     {
-        return $this->idUser;
+        return $this->userId;
     }
 
     /**
      * Set the value of idUser
      */
-    public function setIdUser(int $idUser): self
+    public function setUserId(int $userId): self
     {
-        $this->idUser = $idUser;
+        $this->userId = $userId;
 
         return $this;
     }
@@ -83,7 +83,7 @@ class User
     /**
      * Get the value of phone
      */
-    public function getPhone(): int
+    public function getPhone(): string
     {
         return $this->phone;
     }
@@ -91,7 +91,7 @@ class User
     /**
      * Set the value of phone
      */
-    public function setPhone(int $phone): self
+    public function setPhone(string $phone): self
     {
         $this->phone = $phone;
 

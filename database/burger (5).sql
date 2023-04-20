@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mer. 19 avr. 2023 à 14:41
+-- Généré le : jeu. 20 avr. 2023 à 11:38
 -- Version du serveur : 5.7.39
 -- Version de PHP : 8.2.0
 
@@ -72,11 +72,20 @@ CREATE TABLE `user` (
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `phone` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
   `address` mediumtext NOT NULL,
   `role` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`userId`, `firstname`, `lastname`, `email`, `password`, `phone`, `address`, `role`) VALUES
+(2, 'Sébastien ', 'Criado', 'contact.sebastiencriado@gmail.com', '$2y$10$EyTzNCIzP67tyQ4AIYAQl.DB6NmayEgNAwd6VRpT4eQTxXnryQJdi', '0652706412', '56 avenue gaston berger', 'user'),
+(3, 'Laura', 'Devos', 'lauradevos@free.fr', '$2y$10$RYkzIzESU8nYGvRrPWmKPey7q34TF2aTHWSuVSN/37V22N1OF8s.u', '0608345892', '56 avenue gaston berger', 'user'),
+(4, 'patrick', 'Dupont', 'alfred.dupont@gmail.com', '$2y$10$p15VJPTSOCGXtKNzwqiaTeUpR5adP9t4VswtPrHxCfBSHzBQbHcvC', '0652706412', '56 avenue gaston berger', 'user');
 
 --
 -- Index pour les tables déchargées
@@ -100,7 +109,8 @@ ALTER TABLE `order`
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`userId`);
+  ADD PRIMARY KEY (`userId`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -122,7 +132,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées

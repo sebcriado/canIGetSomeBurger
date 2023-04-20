@@ -8,7 +8,7 @@ use App\Core\AbstractModel;
 use App\Entity\User;
 
 
-class FormModel extends AbstractModel
+class UserModel extends AbstractModel
 {
 
     /**
@@ -30,6 +30,13 @@ class FormModel extends AbstractModel
         return $users;
     }
 
+    // Récupère les données d'un utilisateur
+    function getUser($email)
+    {
+        $sql = 'SELECT * FROM user WHERE email = ?';
+        return $this->db->getOneResult($sql, [$email]);
+    }
+
     /**
      * Sélectionne un user à partir de son id
      */
@@ -46,5 +53,14 @@ class FormModel extends AbstractModel
         }
 
         return new User($result);
+    }
+
+    // Ajoute un nouvel utilisateur
+    function addNewUser(string $firstname, string $lastname, string $email, string $password, string $phone, string $adress)
+    {
+        $role = "user";
+        $sql = 'INSERT INTO user(firstname, lastname, email, password, phone, address, role)
+                VALUES (?, ?, ?, ?, ?, ?, ?)';
+        $this->db->prepareAndExecute($sql, [$firstname, $lastname, $email, $password, $phone, $adress, $role]);
     }
 }

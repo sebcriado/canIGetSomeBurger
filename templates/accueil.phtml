@@ -1,22 +1,3 @@
-<header>
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="nav-logo">
-                <a href="<?= constructUrl('/'); ?>">
-                    <img src="<?= asset('images/nav-logo.png') ?>" alt="">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="">Profil</a>
-                <a href="<?= constructUrl('/panier'); ?>">Panier</a>
-                <a href="<?= constructUrl('/connexion'); ?>">Connexion/Inscription</a>
-                <a href="">Se déconnecter</a>
-            </div>
-        </div>
-
-    </nav>
-</header>
-
 <img src="<?= asset('images/big-logo.png') ?>" alt="">
 
 <?php foreach ($foods as $food) : ?>

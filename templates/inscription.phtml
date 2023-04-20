@@ -1,30 +1,36 @@
-<header>
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="nav-logo">
-                <a href="<?= constructUrl('/'); ?>">
-                    <img src="<?= asset('images/nav-logo.png') ?>" alt="">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="">Profil</a>
-                <a href="<?= constructUrl('/panier'); ?>">Panier</a>
-                <a href="<?= constructUrl('/connexion'); ?>">Connexion/Inscription</a>
-                <a href="">Se déconnecter</a>
-            </div>
-        </div>
-
-    </nav>
-</header>
-
-
 <img src="<?= asset('images/logo-form.png') ?>" alt="">
 
-<form action="">
-    <input type="text" name="firstname" placeholder="Nom">
-    <input type="text" name="lastname" placeholder="Prénom">
-    <input type="mail" name="mail" placeholder="Email">
-    <input type="tel" name="phone" placeholder="Téléphone">
+<form action="" method="POST">
+    <input type="text" name="firstname" placeholder="Nom" value="<?= $firstname ?>">
+    <?php if (isset($errors['firstname'])) : ?>
+        <p class="alert alert-danger"><?= $errors['firstname']; ?></p>
+    <?php endif; ?>
+    <input type="text" name="lastname" placeholder="Prénom" value="<?= $lastname ?>">
+    <?php if (isset($errors['lastname'])) : ?>
+        <p class="alert alert-danger"><?= $errors['lastname']; ?></p>
+    <?php endif; ?>
+    <input type="mail" name="email" placeholder="Email" value="<?= $email ?>">
+    <?php if (isset($errors['email'])) : ?>
+        <p class="alert alert-danger"><?= $errors['email']; ?></p>
+    <?php endif; ?>
+    <?php if (isset($errors['emailExist'])) : ?>
+        <p class="alert alert-danger"><?= $errors['emailExist']; ?></p>
+    <?php endif; ?>
+    <input type="tel" name="phone" placeholder="Téléphone" value="<?= $phone ?>">
+    <?php if (isset($errors['phone'])) : ?>
+        <p class="alert alert-danger"><?= $errors['phone']; ?></p>
+    <?php endif; ?>
     <input type="password" name="password" placeholder="Mot de passe">
-    <button type="submit">S'inscrire</button>
+    <?php if (isset($errors['password'])) : ?>
+        <p class="alert alert-danger"><?= $errors['password']; ?></p>
+    <?php endif; ?>
+    <input type="password" name="password2" placeholder="Vérifier le mot de passe">
+    <?php if (isset($errors['passwordVerify'])) : ?>
+        <p class="alert alert-danger"><?= $errors['passwordVerify']; ?></p>
+    <?php endif; ?>
+    <input type="text" name="address" placeholder="Adresse" value="<?= $adress ?>">
+    <?php if (isset($errors['address'])) : ?>
+        <p class="alert alert-danger"><?= $errors['address']; ?></p>
+    <?php endif; ?>
+    <input type="submit" placeholder="S'inscrire"></input>
 </form>

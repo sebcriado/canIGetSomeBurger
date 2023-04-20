@@ -36,8 +36,11 @@ switch ($path) {
     case '/inscription':
         require '../controllers/inscription.php';
         break;
+    case '/logout':
+        require '../controllers/logout.php';
+        break;
     default:
         http_response_code(404);
-        echo 'Article introuvable';
+        echo 'Page introuvable';
         exit;
 }
