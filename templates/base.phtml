@@ -17,17 +17,17 @@
         <nav class="navbar">
             <div class="nav-content">
                 <div class="nav-logo">
-                    <a href="<?= constructUrl('/'); ?>">
+                    <a href="<?= constructUrl('home'); ?>">
                         <img src="<?= asset('images/nav-logo.png') ?>" alt="">
                     </a>
                 </div>
                 <div class="nav-links">
                     <?php if (!isConnected()) : ?>
-                        <a href="<?= constructUrl('/connexion'); ?>">Connexion/Inscription</a>
+                        <a href="<?= constructUrl('login'); ?>">Connexion/Inscription</a>
                     <?php else : ?>
                         <a href="">Profil</a>
-                        <a href="<?= constructUrl('/panier'); ?>">Panier</a>
-                        <a href="<?= constructUrl('/logout'); ?>">Se déconnecter</a>
+                        <a href="<?= constructUrl('panier'); ?>">Panier</a>
+                        <a href="<?= constructUrl('logout'); ?>">Se déconnecter</a>
                     <?php endif; ?>
                 </div>
             </div>

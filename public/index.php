@@ -22,25 +22,39 @@ if ($path == '') {
     $path = '/';
 }
 
-// Routing
-switch ($path) {
-    case '/':
-        require '../controllers/home.php';
+// ROUTING
+
+
+// On va chercher dans le fichier routes.php le tableau de routes
+$routes = require '../app/routes.php';
+
+// On crée une const ROUTES pour avoir accès à nos routes partout
+define('ROUTES', $routes);
+
+$className = null;
+$method = null;
+
+foreach ($routes as $route) {
+    if ($path == $route['path']) {
+        $className = $route['controller'];
+        $method = $route['method'];
         break;
-    case '/panier':
-        require '../controllers/panier.php';
-        break;
-    case '/connexion':
-        require '../controllers/connexion.php';
-        break;
-    case '/inscription':
-        require '../controllers/inscription.php';
-        break;
-    case '/logout':
-        require '../controllers/logout.php';
-        break;
-    default:
-        http_response_code(404);
-        echo 'Page introuvable';
-        exit;
+    }
+}
+
+// Si on n'a pas trouvé le path dans les routes... => erreur 404
+if ($className == null) {
+    http_response_code(404);
+    echo 'Page introuvable';
+    exit;
+}
+
+// Ici j'ai trouvé ma route !
+try {
+    $className = "App\\Controller\\$className";
+    $controller = new $className();
+    $controller->$method();
+} catch (Exception $exception) {
+    echo $exception->getMessage();
+    exit;
 }
