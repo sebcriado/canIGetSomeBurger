@@ -13,20 +13,19 @@
 </head>
 
 <body>
+
     <header>
         <nav class="navbar">
             <div class="nav-content">
                 <div class="nav-logo">
-                    <a href="<?= constructUrl('home'); ?>">
+                    <a href="<?= constructUrl('adminHome'); ?>">
                         <img src="<?= asset('images/nav-logo.png') ?>" alt="">
                     </a>
                 </div>
                 <div class="nav-links">
                     <?php if (!isConnected()) : ?>
-                        <a href="<?= constructUrl('login'); ?>">Connexion/Inscription</a>
+                        <div></div>
                     <?php else : ?>
-                        <a href="">Profil</a>
-                        <a href="<?= constructUrl('panier'); ?>">Panier</a>
                         <a href="<?= constructUrl('logout'); ?>">Se déconnecter</a>
                     <?php endif; ?>
                 </div>
@@ -34,7 +33,6 @@
 
         </nav>
     </header>
-
     <main>
         <!-- Message flash -->
         <?php if (isset($flashMessage) && $flashMessage) : ?>

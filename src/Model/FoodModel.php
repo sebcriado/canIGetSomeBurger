@@ -44,4 +44,12 @@ class FoodModel extends AbstractModel
 
         return new Food($result);
     }
+
+    // Ajoute un nouvel utilisateur
+    function addNewFood(string $title, string $image, string $description, string $price)
+    {
+        $sql = 'INSERT INTO food(title, image, description, price)
+                VALUES (?, ?, ?, ?)';
+        $this->db->prepareAndExecute($sql, [$title, $image, $description, $price]);
+    }
 }

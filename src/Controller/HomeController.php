@@ -13,11 +13,11 @@ class HomeController
         $foods = $foodModel->getAllFoods();
 
         // Affichage : inclusion du css
-        $css = 'accueil.css';
+        $css = 'home.css';
 
         // Affichage : inclusion du template
         $pageTitle = "Can i get some burger 🍔";
-        $template = 'accueil';
+        $template = 'home';
         include '../templates/base.phtml';
     }
 }

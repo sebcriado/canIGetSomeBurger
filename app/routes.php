@@ -25,7 +25,18 @@ $routes = [
         'path' => '/logout',
         'controller' => 'LogoutController',
         'method' => 'index'
+    ],
+    'admin' => [
+        'path' => '/admin',
+        'controller' => 'AdminLoginController',
+        'method' => 'index'
+    ],
+    'adminHome' => [
+        'path' => '/adminHome',
+        'controller' => 'AdminHomeController',
+        'method' => 'index'
     ]
+
 ];
 
 return $routes;

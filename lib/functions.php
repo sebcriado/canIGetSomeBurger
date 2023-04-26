@@ -37,6 +37,8 @@ function validateForm(string $firstname, string $lastname, string $email, string
 
     if (!$email) {
         $errors['email'] = "Le champ 'Email' est obligatoire";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "L'email n'est pas valide";
     }
 
     if (!$phone) {
@@ -57,6 +59,31 @@ function validateForm(string $firstname, string $lastname, string $email, string
 
     if (emailExist($email)) {
         $errors['emailExist'] = 'Le mail existe déjà';
+    }
+
+    return $errors;
+}
+
+function validateFoodForm(string $title, string $image, string $description, string $price)
+{
+    $errors = [];
+
+    if (!$title) {
+        $errors['title'] = "Le champ 'Titre' est obligatoire";
+    }
+
+    if (!$image) {
+        $errors['image'] = "Le champ 'Image' est obligatoire";
+    }
+
+    if (!$description) {
+        $errors['description'] = "Le champ 'Description' est obligatoire";
+    } elseif (strlen($description) < 10 || strlen($description) > 600) {
+        $errors['description'] = 'Le champ "Description" doit comporter entre 10 et 600 caractères';
+    }
+
+    if (!$price) {
+        $errors['price'] = "Le champ 'Prix' est obligatoire";
     }
 
     return $errors;
