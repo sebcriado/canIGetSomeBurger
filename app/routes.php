@@ -35,6 +35,16 @@ $routes = [
         'path' => '/adminHome',
         'controller' => 'AdminHomeController',
         'method' => 'index'
+    ],
+    'adminDelete' => [
+        'path' => '/adminDelete',
+        'controller' => 'AdminDeleteController',
+        'method' => 'index'
+    ],
+    'adminModify' => [
+        'path' => '/adminModify',
+        'controller' => 'AdminModifyController',
+        'method' => 'index'
     ]
 
 ];

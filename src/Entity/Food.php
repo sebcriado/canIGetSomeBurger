@@ -8,7 +8,7 @@ namespace App\Entity;
 
 class Food
 {
-    private int $idFood;
+    private int $foodId;
     private string $title;
     private string $image;
     private string $description;
@@ -25,23 +25,7 @@ class Food
         }
     }
 
-    /**
-     * Get the value of idFood
-     */
-    public function getIdFood(): int
-    {
-        return $this->idFood;
-    }
 
-    /**
-     * Set the value of idFood
-     */
-    public function setIdFood(int $idFood): self
-    {
-        $this->idFood = $idFood;
-
-        return $this;
-    }
 
     /**
      * Get the value of title
@@ -111,6 +95,24 @@ class Food
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of foodId
+     */
+    public function getFoodId(): int
+    {
+        return $this->foodId;
+    }
+
+    /**
+     * Set the value of foodId
+     */
+    public function setFoodId(int $foodId): self
+    {
+        $this->foodId = $foodId;
 
         return $this;
     }

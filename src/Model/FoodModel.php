@@ -45,11 +45,27 @@ class FoodModel extends AbstractModel
         return new Food($result);
     }
 
-    // Ajoute un nouvel utilisateur
+    // Ajoute un nouveau produit
     function addNewFood(string $title, string $image, string $description, string $price)
     {
         $sql = 'INSERT INTO food(title, image, description, price)
                 VALUES (?, ?, ?, ?)';
         $this->db->prepareAndExecute($sql, [$title, $image, $description, $price]);
+    }
+
+    // Supprime un produit
+    function deleteFood(int $foodId)
+    {
+        $sql = 'DELETE FROM food WHERE foodId = ?';
+
+        $this->db->prepareAndExecute($sql, [$foodId]);
+    }
+
+    function modifyFood(string $title, string $image, string $description, string $price, int $foodId)
+    {
+
+        $sql = 'UPDATE food SET title = ?, image = ?, description = ?, price = ? WHERE foodId = ?';
+
+        $this->db->prepareAndExecute($sql, [$title, $image, $description, $price, $foodId]);
     }
 }
