@@ -1,4 +1,6 @@
-<img src="<?= asset('images/logo-form.png') ?>" alt="">
+<div class="logo-login">
+    <img src="<?= asset('images/logo-form.png') ?>" alt="">
+</div>
 
 <form action="" method="POST">
     <input type="text" name="email" placeholder="Email">
@@ -6,6 +8,6 @@
     <?php if (isset($errors['email'])) : ?>
         <p class="alert alert-danger"><?= $errors['email']; ?></p>
     <?php endif; ?>
-    <button type="submit">Se connecter</button>
+    <button class="button" type="submit">Se connecter</button>
 </form>
-<p>Vous n'êtes pas inscrit ? <a href="<?= constructUrl('register'); ?>">cliquez ici</a></p>
+<p class="register-btn">Vous n'êtes pas inscrit ? <a class="click" href="<?= constructUrl('register'); ?>">cliquez ici</a></p>

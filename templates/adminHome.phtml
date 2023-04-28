@@ -1,42 +1,51 @@
-<h1>Ajouter un produit</h1>
+<h1 class="title">Ajouter un produit</h1>
+<div class="all">
+    <form action="" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" id="title" value="<?= $title ?>">
+        <?php if (isset($errors['title'])) : ?>
+            <p class="alert alert-danger"><?= $errors['title']; ?></p>
+        <?php endif; ?>
+        <label for="image">Image</label>
+        <input type="text" name="image" id="image" placeholder="Url..." value="<?= $image ?>">
+        <?php if (isset($errors['image'])) : ?>
+            <p class="alert alert-danger"><?= $errors['image']; ?></p>
+        <?php endif; ?>
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10" placeholder="Can i get some burger..."></textarea>
+        <?php if (isset($errors['description'])) : ?>
+            <p class="alert alert-danger"><?= $errors['description']; ?></p>
+        <?php endif; ?>
+        <label for="price">Prix</label>
+        <input type="text" name="price" id="price" value="<?= $price ?>">
+        <?php if (isset($errors['price'])) : ?>
+            <p class="alert alert-danger"><?= $errors['price']; ?></p>
+        <?php endif; ?>
+        <button class="button" type="submit">Enregistrer</button>
+    </form>
 
-<form action="" method="POST">
-    <label for="title">Titre</label>
-    <input type="text" name="title" id="title" value="<?= $title ?>">
-    <?php if (isset($errors['title'])) : ?>
-        <p class="alert alert-danger"><?= $errors['title']; ?></p>
-    <?php endif; ?>
-    <label for="image">Image</label>
-    <input type="text" name="image" id="image" placeholder="Url..." value="<?= $image ?>">
-    <?php if (isset($errors['image'])) : ?>
-        <p class="alert alert-danger"><?= $errors['image']; ?></p>
-    <?php endif; ?>
-    <label for="description">Description</label>
-    <textarea name="description" id="description" cols="30" rows="10" placeholder="Can i get some burger..."></textarea>
-    <?php if (isset($errors['description'])) : ?>
-        <p class="alert alert-danger"><?= $errors['description']; ?></p>
-    <?php endif; ?>
-    <label for="price">Prix</label>
-    <input type="text" name="price" id="price" value="<?= $price ?>">
-    <?php if (isset($errors['price'])) : ?>
-        <p class="alert alert-danger"><?= $errors['price']; ?></p>
-    <?php endif; ?>
-    <button type="submit">Enregistrer</button>
-</form>
-
-<?php foreach ($foods as $food) : ?>
-    <div class="card" style="width: 150px;">
-        <img class="img-food" src="<?= asset('images/' . $food->getImage()) ?>" alt="">
-        <h1 class="title-food"><?= $food->getTitle(); ?></h1>
-        <p class="content-food"><?= $food->getDescription() ?></p>
-        <div class="add-price">
-            <h1 class="price-food"><?= $food->getPrice() ?> €</h1>
-        </div>
-        <a href="<?= constructUrl('adminDelete', ['foodId' => $food->getFoodId()]) ?>">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-            </svg>
-        </a>
-        <a href="<?= constructUrl('adminModify', ['foodId' => $food->getFoodId()]) ?>">Modifier</a>
+    <div class="all-cards">
+        <?php foreach ($foods as $food) : ?>
+            <div class="cards">
+                <img class="img-food" src="<?= asset('images/' . $food->getImage()) ?>" alt="">
+                <div class="title-content">
+                    <h1 class="title-food"><?= $food->getTitle(); ?></h1>
+                    <p class="content-food"><?= $food->getDescription() ?></p>
+                </div>
+                <div class="add-price">
+                    <h1 class="price-food"><?= $food->getPrice() ?>€</h1>
+                </div>
+                <div class="delete-modify">
+                    <a href="<?= constructUrl('adminDelete', ['foodId' => $food->getFoodId()]) ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                        </svg>
+                    </a>
+                    <a class="text-light" href="<?= constructUrl('adminModify', ['foodId' => $food->getFoodId()]) ?>">Modifier</a>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
+</div>
+
+<footer></footer>

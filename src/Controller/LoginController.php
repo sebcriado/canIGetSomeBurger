@@ -22,20 +22,24 @@ class LoginController
             $userModel = new UserModel();
             $user = $userModel->getUser($email);
 
-            $userPassword = new User($user);
-
-            $passwordHash = $userPassword->getPassword();
-
-            if ($user !== false && password_verify($password, $passwordHash)) {
-                // L'utilisateur est connecté avec succès
-                $_SESSION['userId'] = $userPassword->getUserId();
-                $_SESSION['flashbag'] = 'Vous êtes maintenant connecté !';
-
-                header('Location:' . constructUrl('home'));
-                exit();
-            } else {
-                // Les identifiants sont incorrects
+            if (!$user) {
                 $errors = ['email' => 'Identifiants incorrects'];
+            } else {
+                $userPassword = new User($user);
+
+                $passwordHash = $userPassword->getPassword();
+
+                if (password_verify($password, $passwordHash)) {
+                    // L'utilisateur est connecté avec succès
+                    $_SESSION['userId'] = $userPassword->getUserId();
+                    $_SESSION['flashbag'] = 'Vous êtes maintenant connecté !';
+
+                    header('Location:' . constructUrl('home'));
+                    exit();
+                } else {
+                    // Les identifiants sont incorrects
+                    $errors = ['email' => 'Identifiants incorrects'];
+                }
             }
         }
 
@@ -48,7 +52,7 @@ class LoginController
 
 
         // Affichage : inclusion du css
-        $css = 'connexion.css';
+        $css = 'login.css';
 
         // Affichage : inclusion du template
         $pageTitle = "Connexion";

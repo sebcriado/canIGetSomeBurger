@@ -26,25 +26,31 @@ class AdminLoginController
             $userModel = new UserModel();
             $user = $userModel->getUser($email);
 
-            $userPassword = new User($user);
 
-            $passwordHash = $userPassword->getPassword();
-            $userRole = $userPassword->getRole();
-
-            if ($userRole === 'user') {
-                $errors['role'] = "Vous n'êtes pas autorisés à vous connecter";
+            if (!$user) {
+                $errors = ['email' => 'Identifiants incorrects'];
             } else {
 
-                if ($user !== false && password_verify($password, $passwordHash)) {
-                    // L'utilisateur est connecté avec succès
-                    $_SESSION['userId'] = $userPassword->getUserId();
-                    $_SESSION['flashbag'] = 'Vous êtes maintenant connecté !';
+                $userPassword = new User($user);
 
-                    header('Location:' . constructUrl('adminHome'));
-                    exit();
+                $passwordHash = $userPassword->getPassword();
+                $userRole = $userPassword->getRole();
+
+                if ($userRole === 'user') {
+                    $errors['role'] = "Vous n'êtes pas autorisés à vous connecter";
                 } else {
-                    // Les identifiants sont incorrects
-                    $errors = ['email' => 'Identifiants incorrects'];
+
+                    if (password_verify($password, $passwordHash)) {
+                        // L'utilisateur est connecté avec succès
+                        $_SESSION['userId'] = $userPassword->getUserId();
+                        $_SESSION['flashbag'] = 'Vous êtes maintenant connecté !';
+
+                        header('Location:' . constructUrl('adminHome'));
+                        exit();
+                    } else {
+                        // Les identifiants sont incorrects
+                        $errors = ['email' => 'Identifiants incorrects'];
+                    }
                 }
             }
         }
@@ -57,7 +63,7 @@ class AdminLoginController
         }
 
         // Affichage : inclusion du css
-        $css = 'connexionAdmin.css';
+        $css = 'loginAdmin.css';
 
         // Affichage : inclusion du template
         $pageTitle = "ConnexionAdmin";

@@ -1,4 +1,6 @@
-<img src="<?= asset('images/logo-form.png') ?>" alt="">
+<div class="register-logo">
+    <img src="<?= asset('images/logo-form.png') ?>" alt="">
+</div>
 
 <form action="" method="POST">
     <input type="text" name="firstname" placeholder="Nom" value="<?= $firstname ?>">
@@ -32,5 +34,7 @@
     <?php if (isset($errors['address'])) : ?>
         <p class="alert alert-danger"><?= $errors['address']; ?></p>
     <?php endif; ?>
-    <input type="submit" placeholder="S'inscrire"></input>
+    <input class="button" type="submit" placeholder="S'inscrire"></input>
 </form>
+
+<footer></footer>

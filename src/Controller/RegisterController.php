@@ -52,7 +52,7 @@ class RegisterController
         }
 
         // Affichage : inclusion du css
-        $css = 'inscription.css';
+        $css = 'register.css';
 
         // Affichage : inclusion du template
         $pageTitle = 'Inscription';

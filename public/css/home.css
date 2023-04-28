@@ -1,0 +1,84 @@
+.logo-home{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.all-cards{
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 1200px;
+    gap: 100px;
+    
+}
+
+.card{
+    width: 300px;
+    color: white;
+    border: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-image: linear-gradient(to bottom, #FFA621 55%, #ffa621be) !important;
+}
+
+.title-food{
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.content-food{
+    font-size: 12px;
+}
+
+.img-food{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.price-food{
+    font-size: 20px;
+}
+
+.add-price{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button{
+    border: none;
+    background-color: #FFA621;
+    color: white;
+    height: 35px;
+    width: 150px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+}
+
+.button:hover{
+    background-color: white;
+    color: #FFA621;
+}
+
+footer{
+    height: 100px;
+}
