@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 20 avr. 2023 à 11:38
+-- Généré le : ven. 28 avr. 2023 à 12:39
 -- Version du serveur : 5.7.39
 -- Version de PHP : 8.2.0
 
@@ -32,7 +32,7 @@ CREATE TABLE `food` (
   `title` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `price` int(11) NOT NULL
+  `price` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -40,12 +40,12 @@ CREATE TABLE `food` (
 --
 
 INSERT INTO `food` (`foodId`, `title`, `image`, `description`, `price`) VALUES
-(1, 'Cheese burger', 'pexels-valeria-boltneva-1639565.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', 12),
-(2, 'Chicken burger', 'pexels-griffin-wooldridge-2657960.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', 11),
-(3, 'Bacon burger', 'pexels-chevanon-photography-1108117.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', 13),
-(4, 'Frites', 'pexels-marco-fischer-115740.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', 3),
-(5, 'Frites bacon cheddar', 'pexels-fernanda-lima-16108600.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', 5),
-(6, 'Frites patates douces', 'pexels-valeria-boltneva-1893555.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', 6);
+(10, 'Chicken Burger', 'pexels-griffin-wooldridge-2657960.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', '12'),
+(11, 'Cheese Burger', 'pexels-valeria-boltneva-1639565.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', '11'),
+(12, 'Bacon Burger', 'pexels-chevanon-photography-1108117.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', '13'),
+(13, 'Frites', 'pexels-marco-fischer-115740.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', '3'),
+(16, 'Frites bacon cheddar', 'pexels-fernanda-lima-16108600.jpg', 'Can I get some burger,\r\n with some peanut butter?\r\nDo you think it\'s better,\r\n with a Dr. Pepper?\r\nCan I get some turkey? \r\nI need more proteins\r\nCan I get some whisky, \r\nI could drink a fountainBaby,\r\nI\'m still hungry, since this morning I need\r\n, bacon, cheese and paincakes', '5'),
+(17, 'Frites patates douces', 'pexels-valeria-boltneva-1893555.jpg', 'Can I get some burger, with some peanut butter? Do you think it\'s better, with a Dr. Pepper? Can I get some turkey? I need more proteins Can I get some whisky, I could drink a fountainBaby, I\'m still hungry, since this morning I need , bacon, cheese and paincakes', '6');
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`userId`, `firstname`, `lastname`, `email`, `password`, `phone`, `address`, `role`) VALUES
 (2, 'Sébastien ', 'Criado', 'contact.sebastiencriado@gmail.com', '$2y$10$EyTzNCIzP67tyQ4AIYAQl.DB6NmayEgNAwd6VRpT4eQTxXnryQJdi', '0652706412', '56 avenue gaston berger', 'user'),
 (3, 'Laura', 'Devos', 'lauradevos@free.fr', '$2y$10$RYkzIzESU8nYGvRrPWmKPey7q34TF2aTHWSuVSN/37V22N1OF8s.u', '0608345892', '56 avenue gaston berger', 'user'),
-(4, 'patrick', 'Dupont', 'alfred.dupont@gmail.com', '$2y$10$p15VJPTSOCGXtKNzwqiaTeUpR5adP9t4VswtPrHxCfBSHzBQbHcvC', '0652706412', '56 avenue gaston berger', 'user');
+(4, 'patrick', 'Dupont', 'alfred.dupont@gmail.com', '$2y$10$p15VJPTSOCGXtKNzwqiaTeUpR5adP9t4VswtPrHxCfBSHzBQbHcvC', '0652706412', '56 avenue gaston berger', 'user'),
+(5, 'Admin', 'Admin', 'admin@burger.com', '$2y$10$abX1RfbsGHjKENshoXmxX.G6HXNoRfL2wRxgeX16WkF8xMsg.VVQe', '0608345892', '56 avenue gaston berger', 'admin');
 
 --
 -- Index pour les tables déchargées
@@ -120,7 +121,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `food`
 --
 ALTER TABLE `food`
-  MODIFY `foodId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `foodId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `order`
@@ -132,7 +133,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
