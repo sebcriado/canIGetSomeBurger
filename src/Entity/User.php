@@ -11,7 +11,7 @@ class User
     private string $email;
     private string $password;
     private string $phone;
-    private string $adress;
+    private string $address;
     private string $role;
 
     public function __construct(array $data = [])
@@ -101,17 +101,17 @@ class User
     /**
      * Get the value of adress
      */
-    public function getAdress(): string
+    public function getAddress(): string
     {
-        return $this->adress;
+        return $this->address;
     }
 
     /**
      * Set the value of adress
      */
-    public function setAdress(string $adress): self
+    public function setAddress(string $adress): self
     {
-        $this->adress = $adress;
+        $this->address = $adress;
 
         return $this;
     }

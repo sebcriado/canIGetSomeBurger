@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Food;
 use App\Model\FoodModel;
+use App\Entity\User;
+use App\Model\UserModel;
 
 
 class AdminHomeController
@@ -41,6 +43,8 @@ class AdminHomeController
         $foodModel = new FoodModel();
         $foods = $foodModel->getAllFoods();
 
+        $userModel = new UserModel();
+        $users = $userModel->getAllUsers();
         // Récupérer le message flash le cas échéant
         if (array_key_exists('flashbag', $_SESSION) && $_SESSION['flashbag']) {
 
