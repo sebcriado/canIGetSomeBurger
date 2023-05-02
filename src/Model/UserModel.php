@@ -75,7 +75,6 @@ class UserModel extends AbstractModel
     // Modifie un utilisateur
     function modifyUser(string $firstname, string $lastname, string $email, string $phone, string $address, int $userId)
     {
-
         $sql = 'UPDATE user SET firstname = ?, lastname = ?, email = ?, phone = ?, address = ? WHERE userId = ?';
 
         $this->db->prepareAndExecute($sql, [$firstname, $lastname, $email, $phone, $address, $userId]);

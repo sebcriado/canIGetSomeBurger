@@ -9,9 +9,6 @@ class AdminLoginController
 {
 
 
-
-
-
     public function index()
     {
 
