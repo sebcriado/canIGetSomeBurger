@@ -39,7 +39,7 @@ class RegisterController
 
                 $_SESSION['flashbag'] = 'Votre inscription à bien été pris en compte !';
 
-                header("Location: " . $_SERVER["PHP_SELF"]);
+                header("Location: " . constructUrl('home'));
                 exit;
             }
         }
