@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\FoodModel;
 
-class AdminDeleteController
+class DeleteFoodController
 {
 
 

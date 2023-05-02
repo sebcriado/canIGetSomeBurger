@@ -1,6 +1,7 @@
 # Installation
 
-Pour que le projet fonctionne, vous devez créer une base de donnée "burger" sur PhpMyadmin.
+Pour que le projet fonctionne, vous devez créer une base de donnée "burger" sur PhpMyadmin et importer le fichier SQL.
+Vous pouvez voir un exemple de config dans le `config.example.php`.
 Ensuite vous devez faire un `composer install` pour récupérer les librairies.
 
 Une fois que vous avez réalisé ces étapes, vous pouvez lancer votre serveur local.

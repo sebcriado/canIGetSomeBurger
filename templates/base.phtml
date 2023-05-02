@@ -25,7 +25,7 @@
                 <?php if (!isConnected()) : ?>
                     <a class="nav-link text-light" href="<?= constructUrl('login'); ?>">Connexion/Inscription</a>
                 <?php else : ?>
-                    <a class="nav-link text-light" href="">Profil</a>
+                    <a class="nav-link text-light" href="<?= constructUrl('userModify') ?>">Profil</a>
                     <a class="nav-link text-light" href="<?= constructUrl('panier'); ?>">Panier</a>
                     <a class="nav-link text-light" href="<?= constructUrl('logout'); ?>">Se déconnecter</a>
                 <?php endif; ?>
