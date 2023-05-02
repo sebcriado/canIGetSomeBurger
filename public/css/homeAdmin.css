@@ -11,6 +11,11 @@ form{
     font-weight: 600;
     width: 400px;
     background-image: linear-gradient(to bottom, #FFA621 55%, #ffa621be) !important;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 input{
