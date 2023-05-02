@@ -10,18 +10,18 @@ class UserModifyController
 
     public function index()
     {
-        $userId = $_GET['userId'];
 
         $userModel = new UserModel();
-        $users = $userModel->getUserId($userId);
+        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
 
-        $firstname = $users->getFirstname();
-        $lastname = $users->getLastname();
-        $email = $users->getEmail();
-        $phone = $users->getPhone();
-        $address = $users->getAddress();
-
-
+        if ($userId) {
+            $users = $userModel->getUserId($userId);
+            $firstname = $users->getFirstname();
+            $lastname = $users->getLastname();
+            $email = $users->getEmail();
+            $phone = $users->getPhone();
+            $address = $users->getAddress();
+        }
 
         if (!empty($_POST)) {
 
@@ -36,8 +36,15 @@ class UserModifyController
 
             $_SESSION['flashbag'] = 'Vos modifications sont enregistrés';
 
-            header("Location: " . constructUrl('userModify'));
+            header("Location: " . constructUrl('home'));
             exit;
+        }
+
+        // Récupérer le message flash le cas échéant
+        if (array_key_exists('flashbag', $_SESSION) && $_SESSION['flashbag']) {
+
+            $flashMessage = $_SESSION['flashbag'];
+            $_SESSION['flashbag'] = null;
         }
 
         // Affichage : inclusion du css
@@ -46,6 +53,6 @@ class UserModifyController
         // Affichage : inclusion du template
         $pageTitle = "Modifier";
         $template = 'userModify';
-        include '../templates/baseAdmin.phtml';
+        include '../templates/base.phtml';
     }
 }
