@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Model\UserModel;
+use App\Service\UserSession;
 
 class AdminLoginController
 {
@@ -39,6 +40,7 @@ class AdminLoginController
 
                     if (password_verify($password, $passwordHash)) {
                         // L'utilisateur est connecté avec succès
+
                         $_SESSION['userId'] = $userPassword->getUserId();
                         $_SESSION['flashbag'] = 'Vous êtes maintenant connecté !';
 
