@@ -21,13 +21,13 @@ class RegisterController
 
             $user = new User();
 
-            $firstname = htmlspecialchars($_POST['firstname']);
-            $lastname = htmlspecialchars($_POST['lastname']);
-            $email = htmlspecialchars($_POST['email']);
-            $phone = htmlspecialchars($_POST['phone']);
-            $password = htmlspecialchars($_POST['password']);
-            $password2 = htmlspecialchars($_POST['password2']);
-            $adress = htmlspecialchars($_POST['address']);
+            $firstname = strip_tags(trim($_POST['firstname']));
+            $lastname = strip_tags(trim($_POST['lastname']));
+            $email = strip_tags(trim($_POST['email']));
+            $phone = strip_tags(trim($_POST['phone']));
+            $password = strip_tags(trim($_POST['password']));
+            $password2 = strip_tags(trim($_POST['password2']));
+            $adress = strip_tags(trim($_POST['address']));
 
             $errors = validateForm($firstname, $lastname, $email, $phone, $password, $password2, $adress);
 

@@ -25,11 +25,11 @@ class UserModifyController
 
         if (!empty($_POST)) {
 
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $email = $_POST['email'];
-            $phone = $_POST['phone'];
-            $address = $_POST['address'];
+            $firstname = strip_tags(trim($_POST['firstname']));
+            $lastname = strip_tags(trim($_POST['lastname']));
+            $email = strip_tags(trim($_POST['email']));
+            $phone = strip_tags(trim($_POST['phone']));
+            $address = strip_tags(trim($_POST['address']));
 
 
             $userModel->modifyUser($firstname, $lastname, $email, $phone, $address, $userId);

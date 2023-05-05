@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Model\UserModel;
+use App\Service\UserSession;
 
 class LoginController
 {
@@ -16,8 +17,8 @@ class LoginController
 
         if (isset($_POST) and !empty($_POST)) {
 
-            $email = htmlspecialchars($_POST['email']);
-            $password = htmlspecialchars($_POST['password']);
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
             $userModel = new UserModel();
             $user = $userModel->getUser($email);
@@ -25,13 +26,16 @@ class LoginController
             if (!$user) {
                 $errors = ['email' => 'Identifiants incorrects'];
             } else {
-                $userPassword = new User($user);
+                $userEntity = new User($user);
 
-                $passwordHash = $userPassword->getPassword();
+                $passwordHash = $userEntity->getPassword();
 
                 if (password_verify($password, $passwordHash)) {
                     // L'utilisateur est connecté avec succès
-                    $_SESSION['userId'] = $userPassword->getUserId();
+                    $userSession = new UserSession;
+                    $userSession->register($userEntity);
+
+                    //$_SESSION['userId'] = $userPassword->getUserId();
                     $_SESSION['flashbag'] = 'Vous êtes maintenant connecté !';
 
                     header('Location:' . constructUrl('home'));

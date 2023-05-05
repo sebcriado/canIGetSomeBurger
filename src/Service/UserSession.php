@@ -22,11 +22,13 @@ class UserSession
 
     public function register(User $user)
     {
-        $_SESSION[self::SESSION_KEY] = [
-            'userid' => $user->getUserId(),
-            'lastname' => $user->getLastname(),
-            'email' => $user->getEmail()
-        ];
+        // $_SESSION[self::SESSION_KEY] = [
+        //     'userid' => $user->getUserId(),
+        //     'lastname' => $user->getLastname(),
+        //     'email' => $user->getEmail()
+        // ];
+
+        $_SESSION[self::SESSION_KEY] = $user;
     }
 
     public function getUser()
@@ -35,9 +37,9 @@ class UserSession
             return null;
         }
 
-        $userModel = new UserModel();
-        $user = $userModel->getUser($_SESSION[self::SESSION_KEY]['email']);
-
+        // $userModel = new UserModel();
+        // $user = $userModel->getUserByEmail($_SESSION[self::SESSION_KEY]['email']);
+        $user = $_SESSION[self::SESSION_KEY];
         return $user;
     }
 }

@@ -107,5 +107,5 @@ function emailExist($email)
 
 function isConnected(): bool
 {
-    return array_key_exists('userId', $_SESSION);
+    return array_key_exists('user', $_SESSION);
 }
