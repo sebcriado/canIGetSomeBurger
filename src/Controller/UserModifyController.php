@@ -12,15 +12,15 @@ class UserModifyController
     {
 
         $userModel = new UserModel();
-        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
 
-        if ($userId) {
-            $users = $userModel->getUserId($userId);
-            $firstname = $users->getFirstname();
-            $lastname = $users->getLastname();
-            $email = $users->getEmail();
-            $phone = $users->getPhone();
-            $address = $users->getAddress();
+        $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+
+        if ($user) {
+            $firstname = $user->getFirstname();
+            $lastname = $user->getLastname();
+            $email = $user->getEmail();
+            $phone = $user->getPhone();
+            $address = $user->getAddress();
         }
 
         if (!empty($_POST)) {
@@ -32,7 +32,7 @@ class UserModifyController
             $address = strip_tags(trim($_POST['address']));
 
 
-            $userModel->modifyUser($firstname, $lastname, $email, $phone, $address, $userId);
+            $userModel->modifyUser($firstname, $lastname, $email, $phone, $address, $user->getUserId());
 
             $_SESSION['flashbag'] = 'Vos modifications sont enregistrés';
 

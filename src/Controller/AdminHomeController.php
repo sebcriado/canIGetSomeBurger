@@ -23,8 +23,8 @@ class AdminHomeController
         $userModel = new UserModel();
 
 
-        if (isset($_SESSION['userId'])) {
-            $user = $userModel->getUserId($_SESSION['userId']);
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
             $userRole = $user ? $user->getRole() : null;
         }
 
@@ -53,7 +53,7 @@ class AdminHomeController
             $foodModel = new FoodModel();
             $foods = $foodModel->getAllFoods();
 
-            $users = $userModel->getAllUsers();
+            $userModel->getAllUsers();
             // Récupérer le message flash le cas échéant
             if (array_key_exists('flashbag', $_SESSION) && $_SESSION['flashbag']) {
 
@@ -70,7 +70,7 @@ class AdminHomeController
             include '../templates/baseAdmin.phtml';
         } else {
             http_response_code(404);
-            echo 'Page introuvable';
+            echo 'Page admin introuvable';
         }
     }
 }
