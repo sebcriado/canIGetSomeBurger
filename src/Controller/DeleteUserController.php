@@ -10,11 +10,11 @@ class DeleteUserController
     public function index()
     {
 
-        $userId = $_GET['userId'];
+        $userId = $_GET['user'];
 
 
-        if (!isset($_GET['userId'])) {
-            $errors['userId'] = "Erreur, l'id est introuvable";
+        if (!isset($_GET['user'])) {
+            $errors['user'] = "Erreur, l'id est introuvable";
         }
 
         if (!$errors) {

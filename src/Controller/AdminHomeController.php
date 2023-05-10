@@ -53,7 +53,7 @@ class AdminHomeController
             $foodModel = new FoodModel();
             $foods = $foodModel->getAllFoods();
 
-            $userModel->getAllUsers();
+            $users = $userModel->getAllUsers();
             // Récupérer le message flash le cas échéant
             if (array_key_exists('flashbag', $_SESSION) && $_SESSION['flashbag']) {
 
