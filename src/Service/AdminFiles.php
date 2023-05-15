@@ -8,7 +8,7 @@ class AdminFiles
 {
 
 
-    public function slugify($string)
+    public function slugify(string $string)
     {
         // Remplace les caractères spéciaux par des tirets
         $string = preg_replace('/[^\p{L}\p{N}]+/u', '-', $string);
@@ -25,7 +25,7 @@ class AdminFiles
         return $string;
     }
 
-    public function filePath()
+    public function filePath(string $filename)
     {
 
         $filename = '';
@@ -49,6 +49,8 @@ class AdminFiles
 
             move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . $filename);
         }
+
+        return $filename;
     }
 
 
