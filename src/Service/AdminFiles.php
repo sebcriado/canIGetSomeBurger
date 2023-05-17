@@ -8,7 +8,7 @@ class AdminFiles
 {
 
 
-    public function slugify(string $string)
+    public static function slugify(string $string)
     {
         // Remplace les caractères spéciaux par des tirets
         $string = preg_replace('/[^\p{L}\p{N}]+/u', '-', $string);
@@ -25,43 +25,48 @@ class AdminFiles
         return $string;
     }
 
-    public function filePath(string $filename)
+    public function uploadFile(string $filename, string $tempPath, string $destFolder)
     {
 
-        $filename = '';
 
-        if (array_key_exists('image', $_FILES) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
+            $filename = $this->cleanFile($filename, $tempPath);
 
-            // Nettoyer le nom du fichier
-            $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            $basename = pathinfo($_FILES['image']['name'], PATHINFO_FILENAME);
-
-            // Slugification du nom du fichier (on supprime caractères spéciaux, accents, majuscules, espaces, etc)
-            $basename = AdminFiles::slugify($basename);
-
-            // On ajoute une chaîne aléatoire pour éviter les conflits
-            $filename = $basename . sha1(uniqid(rand(), true)) . '.' . $extension;
-
+            
             // Copier le fichier temporaire dans notre dossier "images"
-            if (!file_exists('images')) {
-                mkdir('images');
+            if (!file_exists($destFolder)) {
+                 mkdir($destFolder);
             }
 
-            move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . $filename);
-        }
+            move_uploaded_file($tempPath, $destFolder . "/" . $filename);
+        
+
+        return $filename;
+    }
+
+    public function cleanFile(string $filename, string $tempPath){
+
+        // Nettoyer le nom du fichier
+        $extension = pathinfo($tempPath, PATHINFO_EXTENSION);
+        $basename = pathinfo($tempPath, PATHINFO_FILENAME);
+
+        // Slugification du nom du fichier (on supprime caractères spéciaux, accents, majuscules, espaces, etc)
+        $basename = self::slugify($basename);
+
+        // On ajoute une chaîne aléatoire pour éviter les conflits
+        $filename = $basename . sha1(uniqid(rand(), true)) . '.' . $extension;
 
         return $filename;
     }
 
 
-    public function fileSize($filesize)
+    public function fileSize($filesize, string $tempPath, string $destFolder)
     {
 
         // Validation de l'image si un fichier a été uploadé
-        if (array_key_exists('image', $_FILES) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
+        if (array_key_exists($destFolder, $_FILES) && $tempPath != UPLOAD_ERR_NO_FILE) {
 
             // Validation du poids du fichier
-            $filesize = filesize($_FILES['image']['tmp_name']);
+            $filesize = filesize($tempPath);
             if ($filesize > MAX_UPLOAD_SIZE) {
                 $errors['image'] = 'Votre fichier excède 1 Mo.';
             }
@@ -71,15 +76,15 @@ class AdminFiles
     }
 
 
-    public function fileType()
+    public function fileType(string $tempPath, string $destFolder)
     {
 
         $errors = [];
-        if (array_key_exists('image', $_FILES) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
+        if (array_key_exists($destFolder, $_FILES) && $tempPath != UPLOAD_ERR_NO_FILE) {
 
             // Validation du type de fichier
             $allowedMimeTypes = ['image/jpeg', 'image/png'];
-            $mimeType = mime_content_type($_FILES['image']['tmp_name']);
+            $mimeType = mime_content_type($tempPath);
 
             if (!in_array($mimeType, $allowedMimeTypes)) {
                 $errors['image'] = 'Type de fichier non autorisé';
