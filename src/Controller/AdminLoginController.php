@@ -43,7 +43,7 @@ class AdminLoginController
 
                         $userSession = new UserSession();
                         $userSession->register($userEntity);
-
+                        
                         $_SESSION['flashbag'] = 'Vous êtes maintenant connecté !';
 
                         header('Location: ' . constructUrl('adminHome'));
