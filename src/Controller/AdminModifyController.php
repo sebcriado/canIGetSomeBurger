@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\FoodModel;
 use App\Entity\Food;
+use App\Service\AdminFiles;
 
 class AdminModifyController
 {
@@ -17,7 +18,7 @@ class AdminModifyController
         $food = $foodModel->getFoodId($foodId);
 
         $title = $food->getTitle();
-        $image = $food->getImage();
+        // $image = $food->getImage();
         $description = $food->getDescription();
         $price = $food->getPrice();
 
@@ -25,11 +26,18 @@ class AdminModifyController
         if (!empty($_POST)) {
 
             $title = $_POST['title'];
-            $image = $_POST['image'];
+            $image = $_FILES['image'];
             $description = $_POST['description'];
             $price = $_POST['price'];
 
-            $foodModel->modifyFood($title, $image, $description, $price, $foodId);
+            $filename = $food->getImage();
+            if ($filename && file_exists('images/' . $filename)){
+                unlink('images/' . $filename);
+            }
+
+            $adminFiles = new AdminFiles;
+            $fileName = $adminFiles->uploadFile($image['name'], $image['tmp_name'], 'images');
+            $foodModel->modifyFood($title, $fileName, $description, $price, $foodId);
 
             $_SESSION['flashbag'] = 'Le produit à bien été modifié !';
 

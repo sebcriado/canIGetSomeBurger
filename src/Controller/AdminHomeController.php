@@ -6,6 +6,7 @@ use App\Entity\Food;
 use App\Model\FoodModel;
 use App\Entity\User;
 use App\Model\UserModel;
+use App\Service\AdminFiles;
 
 
 class AdminHomeController
@@ -33,7 +34,7 @@ class AdminHomeController
             if (isset($_POST) and !empty($_POST)) {
 
                 $title = $_POST['title'];
-                $image = $_POST['image'];
+                $image = $_FILES['image'];
                 $description = $_POST['description'];
                 $price = $_POST['price'];
 
@@ -41,8 +42,11 @@ class AdminHomeController
 
                 if (!$errors) {
 
+                    $adminFiles = new AdminFiles;
+                    $fileName = $adminFiles->uploadFile($image['name'], $image['tmp_name'], 'images');
+                    
                     $newFood = new FoodModel();
-                    $newFood->addNewFood($title, $image, $description, $price);
+                    $newFood->addNewFood($title, $fileName, $description, $price);
                     $_SESSION['flashbag'] = 'Le produit à bien été ajouté !';
 
                     header("Location: " . $_SERVER["PHP_SELF"]);

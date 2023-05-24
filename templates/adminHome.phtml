@@ -7,8 +7,8 @@
             <p class="alert alert-danger"><?= $errors['title']; ?></p>
         <?php endif; ?>
         <label for="image">Image</label>
-        <!-- <input type="file" id="image" name="image"> -->
-        <input type="text" name="image" id="image" placeholder="Url...">
+        <input type="file" id="image" name="image">
+        <!-- <input type="text" name="image" id="image" placeholder="Url..."> -->
         <?php if (isset($errors['image'])) : ?>
             <p class="alert alert-danger"><?= $errors['image']; ?></p>
         <?php endif; ?>

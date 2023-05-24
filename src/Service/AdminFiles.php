@@ -28,10 +28,8 @@ class AdminFiles
     public function uploadFile(string $filename, string $tempPath, string $destFolder)
     {
 
-
             $filename = $this->cleanFile($filename, $tempPath);
 
-            
             // Copier le fichier temporaire dans notre dossier "images"
             if (!file_exists($destFolder)) {
                  mkdir($destFolder);
@@ -43,11 +41,11 @@ class AdminFiles
         return $filename;
     }
 
-    public function cleanFile(string $filename, string $tempPath){
+    public function cleanFile(string $filename){
 
         // Nettoyer le nom du fichier
-        $extension = pathinfo($tempPath, PATHINFO_EXTENSION);
-        $basename = pathinfo($tempPath, PATHINFO_FILENAME);
+        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        $basename = pathinfo($filename, PATHINFO_FILENAME);
 
         // Slugification du nom du fichier (on supprime caractères spéciaux, accents, majuscules, espaces, etc)
         $basename = self::slugify($basename);
@@ -59,29 +57,23 @@ class AdminFiles
     }
 
 
-    public function fileSize($filesize, string $tempPath, string $destFolder)
+    public function fileSize(array $errors, string $tempPath)
     {
-
-        // Validation de l'image si un fichier a été uploadé
-        if (array_key_exists($destFolder, $_FILES) && $tempPath != UPLOAD_ERR_NO_FILE) {
-
+        
             // Validation du poids du fichier
             $filesize = filesize($tempPath);
             if ($filesize > MAX_UPLOAD_SIZE) {
                 $errors['image'] = 'Votre fichier excède 1 Mo.';
             }
-        }
+        
 
-        return $filesize;
+        return $errors;
     }
 
 
-    public function fileType(string $tempPath, string $destFolder)
+    public function fileType(array $errors,string $tempPath)
     {
-
-        $errors = [];
-        if (array_key_exists($destFolder, $_FILES) && $tempPath != UPLOAD_ERR_NO_FILE) {
-
+       
             // Validation du type de fichier
             $allowedMimeTypes = ['image/jpeg', 'image/png'];
             $mimeType = mime_content_type($tempPath);
@@ -89,8 +81,7 @@ class AdminFiles
             if (!in_array($mimeType, $allowedMimeTypes)) {
                 $errors['image'] = 'Type de fichier non autorisé';
             }
-        }
 
-        return true;
+        return $errors;
     }
 }

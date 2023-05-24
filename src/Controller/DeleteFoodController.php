@@ -21,8 +21,12 @@ class DeleteFoodController
         if (!$errors) {
 
             $foodModel = new FoodModel();
-            $foodModel->getFoodId($foodId);
+            $food = $foodModel->getFoodId($foodId);
 
+            $filename = $food->getImage();
+            if ($filename && file_exists('images/' . $filename)){
+                unlink('images/' . $filename);
+            }
             $foodModel->deleteFood($foodId);
 
             $_SESSION['flashbag'] = 'Le produit à bien été supprimé !';

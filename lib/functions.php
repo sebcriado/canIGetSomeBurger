@@ -1,7 +1,7 @@
 <?php
 
 use App\Core\Database;
-
+use App\Service\AdminFiles;
 function asset(string $path)
 {
     return BASE_URL . '/' . $path;
@@ -64,7 +64,7 @@ function validateForm(string $firstname, string $lastname, string $email, string
     return $errors;
 }
 
-function validateFoodForm(string $title, string $image, string $description, string $price)
+function validateFoodForm(string $title, array $image, string $description, string $price)
 {
     $errors = [];
 
@@ -72,8 +72,12 @@ function validateFoodForm(string $title, string $image, string $description, str
         $errors['title'] = "Le champ 'Titre' est obligatoire";
     }
 
-    if (!$image) {
+    if ($image['error'] == UPLOAD_ERR_NO_FILE) {
         $errors['image'] = "Le champ 'Image' est obligatoire";
+    } else{
+        $adminFiles = new AdminFiles;
+        $errors = $adminFiles->fileSize($errors, $image['tmp_name']);
+        $errors = $adminFiles->fileType($errors, $image['tmp_name']);
     }
 
     if (!$description) {
