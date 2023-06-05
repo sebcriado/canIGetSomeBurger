@@ -10,7 +10,6 @@ class PanierController
     {
 
 
-
         // Affichage : inclusion du css
         $css = 'panier.css';
 
