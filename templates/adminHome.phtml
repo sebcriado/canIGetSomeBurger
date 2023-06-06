@@ -30,8 +30,8 @@
             <div class="cards">
                 <img class="img-food" src="<?= asset('images/' . $food->getImage()) ?>" alt="">
                 <div class="title-content">
-                    <h1 class="title-food"><?= $food->getTitle(); ?></h1>
-                    <p class="content-food"><?= $food->getDescription() ?></p>
+                    <h1 class="title-food"><?= htmlspecialchars($food->getTitle()); ?></h1>
+                    <p class="content-food"><?= htmlspecialchars($food->getDescription()); ?></p>
                 </div>
                 <div class="add-price">
                     <h1 class="price-food"><?= $food->getPrice() ?>€</h1>
@@ -61,10 +61,10 @@
     <tbody>
         <?php foreach ($users as $user) : ?>
             <tr>
-                <td><?= $user->getLastname() ?></td>
-                <td><?= $user->getFirstname() ?></td>
-                <td><?= $user->getEmail() ?></td>
-                <td><?= $user->getAddress() ?></td>
+                <td><?= htmlspecialchars($user->getLastname()); ?></td>
+                <td><?= htmlspecialchars($user->getFirstname()); ?></td>
+                <td><?= htmlspecialchars($user->getEmail()); ?></td>
+                <td><?= htmlspecialchars($user->getAddress()); ?></td>
                 <td><?= $user->getPhone() ?></td>
                 <td>
                     <a data-message="Êtes-vous sûre de vouloir supprimer l'utilisateur ?" class="delete-btn" href="<?= constructUrl('deleteUser', ['user' => $user->getUserId()]) ?>">

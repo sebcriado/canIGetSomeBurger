@@ -7,8 +7,8 @@
         <div class="card">
             <img class="img-food" src="<?= asset('images/' . $food->getImage()) ?>" alt="">
             <div>
-                <h1 class="title-food"><?= $food->getTitle(); ?></h1>
-                <p class="content-food"><?= $food->getDescription() ?></p>
+                <h1 class="title-food"><?= htmlspecialchars($food->getTitle());  ?></h1>
+                <p class="content-food"><?= htmlspecialchars($food->getDescription()); ?></p>
                 <div class="add-price">
                     <h1 class="price-food"><?= $food->getPrice() ?> €</h1>
                     <button class="button">Ajouter au panier</button>

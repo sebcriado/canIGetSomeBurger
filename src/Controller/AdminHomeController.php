@@ -33,10 +33,10 @@ class AdminHomeController
 
             if (isset($_POST) and !empty($_POST)) {
 
-                $title = $_POST['title'];
+                $title = strip_tags(trim($_POST['title']));
                 $image = $_FILES['image'];
-                $description = $_POST['description'];
-                $price = $_POST['price'];
+                $description = strip_tags(trim($_POST['description']));
+                $price = strip_tags(trim($_POST['price']));
 
                 $errors = validateFoodForm($title, $image, $description, $price);
 
